@@ -1,4 +1,4 @@
-# Pet Adoption Finder 🐾
+# PawFind 🐾
 
 Platform web modern untuk menemukan dan mengadopsi hewan peliharaan dari shelter terpercaya. Dibangun sebagai Progressive Web App (PWA), aplikasi ini dapat diinstal di perangkat Anda dan berfungsi penuh bahkan saat offline.
 
@@ -13,14 +13,7 @@ Platform web modern untuk menemukan dan mengadopsi hewan peliharaan dari shelter
 - 📱 **PWA Support**: Install aplikasi di perangkat mobile atau desktop
 
 
-## 🎨 Teknologi
 
-- **React 19** - Library UI modern
-- **Vite** - Build tool yang super cepat
-- **Tailwind CSS 4** - Framework CSS utility-first
-- **Lucide React** - Icon library yang indah
-- **PWA** - Progressive Web App support
-- **RESTful API** - Integrasi dengan backend Pet Finder API
 
 
 
