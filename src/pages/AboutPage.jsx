@@ -1,4 +1,5 @@
-import { MessageCircleHeart, HelpCircle, Users, Mail, Phone, FileText, ClipboardCheck, PhoneCall, HandHeart } from 'lucide-react';
+import { MessageCircleHeart, HelpCircle, Users, Mail, Phone, FileText, ClipboardCheck, PhoneCall, HandHeart, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useRef } from 'react';
 
 export default function AboutPage() {
   const faqItems = [
@@ -25,21 +26,33 @@ export default function AboutPage() {
 
   const teamMembers = [
     {
-      name: 'Rani Putri',
+      name: 'Citra Marta Fatmala',
       role: 'Koordinator Adopsi',
       bio: 'Memastikan proses review adopter berjalan adil dan transparan.'
     },
     {
-      name: 'Dimas Pratama',
+      name: 'Galileo Athari Muhammad',
       role: 'Koordinator Kemitraan Shelter',
       bio: 'Membangun kolaborasi dengan shelter untuk menjaga kualitas layanan adopsi.'
     },
     {
-      name: 'Nadia Rahma',
+      name: 'Ifada Adillarisca Kusuma',
+      role: 'Dukungan Komunitas',
+      bio: 'Mendampingi adopter dari tahap pengajuan hingga proses pertemuan dengan hewan.'
+    },
+    {
+      name: 'Rajwa Vourza Tsaqifa',
       role: 'Dukungan Komunitas',
       bio: 'Mendampingi adopter dari tahap pengajuan hingga proses pertemuan dengan hewan.'
     }
   ];
+
+  const containerRef = useRef(null);
+  const scrollCards = (direction) => {
+    if (!containerRef.current) return;
+    const distance = containerRef.current.clientWidth || 320; // scroll by visible width
+    containerRef.current.scrollBy({ left: direction * distance, behavior: 'smooth' });
+  };
 
   const adoptionFlow = [
     {
@@ -124,17 +137,35 @@ export default function AboutPage() {
             <Users className="text-teal-600" size={34} />
             Tim Kami
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {teamMembers.map((member) => (
-              <div key={member.name} className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300">
-                <div className="w-14 h-14 rounded-full bg-teal-100 text-teal-700 font-bold flex items-center justify-center mb-4 text-xl">
-                  {member.name.charAt(0)}
+          <div className="relative">
+            <button
+              onClick={() => scrollCards(-1)}
+              aria-label="Scroll left"
+              className="hidden md:flex absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-md"
+            >
+              <ChevronLeft />
+            </button>
+
+            <div ref={containerRef} className="flex gap-8 overflow-x-auto pb-4 snap-x snap-mandatory touch-pan-x">
+              {teamMembers.map((member) => (
+                <div key={member.name} className="w-[260px] md:w-1/3 flex-shrink-0 snap-start bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300">
+                  <div className="w-14 h-14 rounded-full bg-teal-100 text-teal-700 font-bold flex items-center justify-center mb-4 text-xl">
+                    {member.name.charAt(0)}
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-800">{member.name}</h3>
+                  <p className="text-teal-600 font-semibold mt-1">{member.role}</p>
+                  <p className="text-gray-600 mt-3">{member.bio}</p>
                 </div>
-                <h3 className="text-xl font-bold text-gray-800">{member.name}</h3>
-                <p className="text-teal-600 font-semibold mt-1">{member.role}</p>
-                <p className="text-gray-600 mt-3">{member.bio}</p>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            <button
+              onClick={() => scrollCards(1)}
+              aria-label="Scroll right"
+              className="hidden md:flex absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-md"
+            >
+              <ChevronRight />
+            </button>
           </div>
         </section>
 
